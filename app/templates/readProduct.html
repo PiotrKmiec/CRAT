@@ -4,33 +4,29 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Ceneo Review Analisys Tool</title>
+  <title>{{ title }} - Ceneo Review Analisys Tool</title>
   <meta name="description" content="Ceneo Review Analisys Tool">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
   <script src="{{url_for('static', filename='main.js')}}"></script>
 </head>
 
-<body onload="indexPage()">
+<body>
   <div id="main">
     <div id="header">
       <h1 onclick="location.href='/';" style="cursor:pointer"><span style="color:orangered; font-family:arial">c</span><span style="font-family: monospace;">RAT</span></h1>
     </div>
-      <p>Extracted products:</p>
+    <div id="content">
+      <h1 id="prodTitle">{{ title }}</h1>
+      <p>Extracted opinions:</p>
       <div id="noScrollBarWrap"><div id="scroll">
-        
-        <input type="text" id="searchBar" placeholder="Write product ID here"/>
 
-        <form action="/showOpinions">
-        {% for product in products %}
-        <input class="productButton" type="submit" value="{{product}}" name="product"/>
+        {% for opinion in opinions %}
+          <div id="opinion">
+            <h3 id="opAuthor">{{ opinion['author'] }}</h3>
+            <p id="opContent">{{ opinion['content'] }}</p>
+          </div>
         {% endfor %}
-        </form>
-
-        <form id="extractForm" action="/extract" style="display:none">
-        <p style="color:#662E00">This product has not beed extracted yet. Click the button to extract:</p>
-        <a id="extractButton"></a>
-        </form>
 
       </div></div>
     </div>

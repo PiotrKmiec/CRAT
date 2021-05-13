@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from os import listdir
 from os.path import isfile, join
 from modules.product import Product
@@ -12,7 +12,7 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route("/")
 def home():
-    
+
     return render_template("index.html", products=extractedProducts)
 
 @app.route("/extract/<var>")
@@ -20,7 +20,7 @@ def extract(var):
 
     temp = Product(var)
     temp.toJSON()
-    return temp.title
+    return redirect("/showOpinions?product="+var)
 
 @app.route("/showOpinions")
 def show():
@@ -28,7 +28,7 @@ def show():
     with open("data/"+request.args.get('product')+".json","r+") as file:
         data = json.load(file)
 
-    return data['Name']
+    return render_template("readProduct.html", opinions=data["Opinions"], title=data["Name"])
 
 if __name__ == "__main__":
     app.run()
