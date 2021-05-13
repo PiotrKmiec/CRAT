@@ -42,7 +42,7 @@ class Opinion:
             self.purchaseDate = temp[1]["datetime"]
         else:
             self.purchaseDate = None
-    def asJSON(self):
+    def __dict__(self):
         return {
             'id':self.id,
             'author':self.author,

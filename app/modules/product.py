@@ -1,7 +1,9 @@
-import requests
+import requests, json, os, sys
 from bs4 import BeautifulSoup
-from opinion import Opinion
-import json
+import requests
+from modules.opinion import Opinion
+
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 class Product:
     def __init__(self, ID):
@@ -26,18 +28,15 @@ class Product:
             
             for review in reviews:
                 self.opinionList.append(Opinion(review))
-    def asJSON(self):
-        return {
-            "ID":self.ID,
-            "Name":self.title,
-            "Opinions":self.opinionList
-        }
-    def saveJSON(self):
-        with open('./data/'+self.ID+'.json','w+') as outfile:
-            json.dump(self.asJSON(), outfile)
 
-                
-temp = Product("97065427")
-print("Opinions: "+str(len(temp.opinionList)))
-temp.saveJSON()
+    def toJSON(self):
+        temp = []
+
+        for x in range(0, len(self.opinionList)):
+            temp.append(self.opinionList[x].__dict__())
+
+        data = { "ID":self.ID,"Name":self.title,"Opinions":temp }
+
+        with open('data/'+self.ID+'.json', 'w+') as file:
+            json.dump(data, file)
             

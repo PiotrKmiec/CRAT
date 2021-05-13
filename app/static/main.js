@@ -16,7 +16,8 @@ searchBar.addEventListener('keyup', function(){
     };
     if(empty){
         document.getElementById("extractForm").style.display = "block";
-        document.getElementById("extractButton").value = searchBar.value;
+        document.getElementById("extractButton").setAttribute('href',"extract/"+searchBar.value);
+        document.getElementById("extractButton").innerHTML = "Extract "+searchBar.value;
     }else{
         document.getElementById("extractForm").style.display = "none";
     }
