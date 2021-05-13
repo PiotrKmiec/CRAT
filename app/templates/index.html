@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Ceneo Review Analisys Tool</title>
+  <meta name="description" content="Ceneo Review Analisys Tool">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+</head>
+
+<body>
+  <div id="main">
+    <div id="header"><h1><span style="color:orangered; font-family:arial">c</span><span style="font-family: monospace;">RAT</span></h1></div>
+    <div id="content">
+      <p>Extracted opinions:</p>
+      <div id="noScrollBarWrap"><div id="scroll">
+        
+        <input type="text" id="searchBar" placeholder="Write product ID here"/>
+
+        <form action="/showOpinions">
+        {% for product in products %}
+        <input class="productButton" type="submit" value="{{product}}" name="product"/>
+        {% endfor %}
+        </form>
+
+        <form id="extractForm" action="/extract" style="display:none">
+        <p style="color:#662E00">This product has not beed extracted yet. Click the button to extract:</p>
+        <input id="extractButton" type="submit" name="productID"/>
+        </form>
+
+      </div></div>
+    </div>
+  </div>
+</body>
+<script src="{{url_for('static', filename='main.js')}}"></script>
+</html>

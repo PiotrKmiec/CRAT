@@ -1,0 +1,91 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #B35A12;
+    color:#FF7300;
+    font-size: large;
+    text-align: center;
+}
+*{
+    padding:0;
+    margin:0;
+}
+#main{
+    width:1200px;
+    margin:0 auto;
+    background-color: #662E00;
+}
+#header{
+    width: 1200px;
+    background-color: #FF7300;
+    border-bottom:3px solid #B35A12;
+    color:#662E00;
+    font-size:50px;
+    text-align: center;
+}
+#content{
+    width: 1200px;
+}
+#scroll{
+    width:720px;
+    background-color: #FF7300;
+    overflow:scroll;
+    height:600px;
+    margin:0 auto;
+}
+#noScrollBarWrap{
+    width:700px;
+    overflow:hidden;
+    height:580px;
+}
+.productButton{
+    color:#FF7300;
+    background-color: #662E00;
+    transition:all .3s ease-in-out;
+    border:none;
+    padding:10px;
+    font-size: larger;
+    width:710px;
+    margin-top: 15px;
+    margin-left:-10px;
+    height:50px;
+    border-left:3px solid #FF7300;
+}
+.productButton:hover{
+    background-color: #B35A12;
+    border-left:5px solid #FF7300;
+}
+p{
+    margin:30px;
+    font-size:larger;
+}
+#searchBar{
+    color:#FF7300;
+    background-color: #B35A12;
+    border:none;
+    padding:20px;
+    font-size: larger;
+    width:710px;
+    margin-top: 15px;
+    margin-left:-10px;
+    height:30px;
+}
+#searchBar::placeholder{
+    color:#662E00;
+}
+#extractButton{
+    color:#FF7300;
+    background-color: #662E00;
+    transition:all .3s ease-in-out;
+    border:none;
+    padding:10px;
+    font-size: larger;
+    width:710px;
+    margin-top: 15px;
+    margin-left:-10px;
+    height:50px;
+    border-left:3px solid #FF7300;
+}
+#extractButton:hover{
+    background-color: #B35A12;
+    border-left:5px solid #FF7300;
+}
