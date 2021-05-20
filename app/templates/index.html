@@ -12,6 +12,10 @@
 </head>
 
 <body onload="indexPage()">
+    {% if errorID %}
+      {{ errorID }}
+    {% endif %}
+
   <div id="main">
     <div id="header">
       <h1 onclick="location.href='/';" style="cursor:pointer"><span style="color:orangered; font-family:arial">c</span><span style="font-family: monospace;">RAT</span></h1>
@@ -28,7 +32,7 @@
         </form>
 
         <form id="extractForm" action="/extract" style="display:none">
-        <p style="color:#662E00">This product has not beed extracted yet. Click the button to extract:</p>
+        <p style="color:#662E00">This product has not beed extracted yet.</p>
         <a id="extractButton"></a>
         </form>
 

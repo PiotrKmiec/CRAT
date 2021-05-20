@@ -4,22 +4,27 @@ from os.path import isfile, join
 from modules.product import Product
 import json
 
-extractedProducts = [f for f in listdir("data") if isfile(join("data", f))]
-for x in range(0, len(extractedProducts)):
-    extractedProducts[x] = extractedProducts[x][:-5]
-
 app = Flask(__name__, template_folder='templates')
 
 @app.route("/")
 def home():
-
-    return render_template("index.html", products=extractedProducts)
+    extractedProducts = [f for f in listdir("data") if isfile(join("data", f))]
+    for x in range(0, len(extractedProducts)):
+        extractedProducts[x] = extractedProducts[x][:-5]
+    return render_template("index.html", products=extractedProducts, errorID=request.args.get("err"))
 
 @app.route("/extract/<var>")
 def extract(var):
+    print(var)
+
+    if not var.isdecimal():
+        return redirect("/?err=2")
+    if len(var)>9 or len(var)<8:
+        return redirect("/?err=1")
 
     temp = Product(var)
     temp.toJSON()
+
     return redirect("/showOpinions?product="+var)
 
 @app.route("/showOpinions")

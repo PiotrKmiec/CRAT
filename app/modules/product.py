@@ -2,6 +2,7 @@ import requests, json, os, sys
 from bs4 import BeautifulSoup
 import requests
 from modules.opinion import Opinion
+from utils import extractElement
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 

@@ -1,4 +1,4 @@
-  def extractElement(ancestor, selector, attribute=None):
+def extractElement(ancestor, selector, attribute=None):
     try:
         if attribute:
             return ancestor.select(selector).pop(0)[attribute].strip()
@@ -6,3 +6,5 @@
             return ancestor.select(selector).pop(0).text.strip()
     except IndexError:
         return None
+if __name__ == "__main__":
+    extractElement()
