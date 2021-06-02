@@ -7,28 +7,36 @@ from utils import extractElement
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 class Product:
-    def __init__(self, ID):
-        self.ID = ID
-        self.opinionList = []
+    def __init__(self, ID, isJson=False):
+        if isJson:
+            with open("data/"+ ID +".json","r+") as file:
+                data = json.load(file)
 
-        content = requests.get("https://www.ceneo.pl/"+ID+"#tab=reviews_scroll", auth=('user', 'pass'))
-        soup = BeautifulSoup(content.text, 'html.parser')
-        reviews = soup.select("div.js_product-review")
+            self.ID = data["ID"]
+            self.title = data["Name"]
+            self.opinionList = data["Opinions"]
+        else:
+            self.ID = ID
+            self.opinionList = []
 
-        self.title = soup.select("h1.js_product-h1-link")[0].contents[0]
-        for review in reviews:
-            self.opinionList.append(Opinion(review))
-
-        while len(soup.select("a.pagination__next")) != 0:
-            url = soup.select("a.pagination__next")[0]['href']
-            
-            content = requests.get("https://www.ceneo.pl/"+url, auth=('user', 'pass'))
-            soup = BeautifulSoup(content.text, "html.parser")
-            
+            content = requests.get("https://www.ceneo.pl/"+ID+"#tab=reviews_scroll", auth=('user', 'pass'))
+            soup = BeautifulSoup(content.text, 'html.parser')
             reviews = soup.select("div.js_product-review")
-            
+
+            self.title = soup.select("h1.js_product-h1-link")[0].contents[0]
             for review in reviews:
                 self.opinionList.append(Opinion(review))
+
+            while len(soup.select("a.pagination__next")) != 0:
+                url = soup.select("a.pagination__next")[0]['href']
+                
+                content = requests.get("https://www.ceneo.pl/"+url, auth=('user', 'pass'))
+                soup = BeautifulSoup(content.text, "html.parser")
+                
+                reviews = soup.select("div.js_product-review")
+                
+                for review in reviews:
+                    self.opinionList.append(Opinion(review))
 
     def toJSON(self):
         temp = []
@@ -40,4 +48,5 @@ class Product:
 
         with open('data/'+self.ID+'.json', 'w+') as file:
             json.dump(data, file)
+
             

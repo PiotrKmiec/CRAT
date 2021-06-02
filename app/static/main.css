@@ -90,6 +90,24 @@ p{
     background-color: #B35A12;
     border-left:5px solid #FF7300;
 }
+#rextractButton{
+    color:#662E00;
+    background-color: #FF7300;
+    transition:all .3s ease-in-out;
+    border:none;
+    padding:10px;
+    font-size: larger;
+    width:710px;
+    margin-top: 25px;
+    margin-left:-10px;
+    height:50px;
+    border-left:3px solid #B35A12;
+}
+#rextractButton:hover{
+    background-color: #B35A12;
+    border-left:5px solid #FF7300;
+}
+
 #opinion{
     border-left:8px solid #B35A12;
     background-color: #662E00;
@@ -107,4 +125,12 @@ p{
 }
 #logo{
     text-decoration: none;
+}
+#prodTitle{
+    margin:15px auto;
+    color:#FF7300;
+    transition:.3s all ease-in-out;
+}
+#prodTitle:hover{
+    color:#B35A12;
 }

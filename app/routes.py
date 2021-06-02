@@ -6,12 +6,31 @@ import json
 
 app = Flask(__name__, template_folder='templates')
 
+def getIDs():
+    IDs = [f for f in listdir("data") if isfile(join("data", f))]
+
+    for x in range(0, len(IDs)):
+        IDs[x] = IDs[x][:-5]
+    return IDs
+
+
+def getProducts():
+    productIDs = getIDs()
+    products = []
+    productNames = []
+
+    for x in productIDs:
+        products.append(Product(x, True))
+    for x in products:
+        productNames.append(x.title)
+
+    return [productIDs, productNames, products]
+
 @app.route("/")
 def home():
-    extractedProducts = [f for f in listdir("data") if isfile(join("data", f))]
-    for x in range(0, len(extractedProducts)):
-        extractedProducts[x] = extractedProducts[x][:-5]
-    return render_template("index.html", products=extractedProducts, errorID=request.args.get("err"))
+    products = getProducts()
+    print(products[1])
+    return render_template("index.html", products=products[0], names=products[1], amount=len(products[0]), errorID=request.args.get("err"))
 
 @app.route("/extract/<var>")
 def extract(var):
@@ -30,10 +49,12 @@ def extract(var):
 @app.route("/showOpinions")
 def show():
 
-    with open("data/"+request.args.get('product')+".json","r+") as file:
-        data = json.load(file)
+    product = Product(request.args.get('product'), True)
 
-    return render_template("readProduct.html", opinions=data["Opinions"], title=data["Name"])
+    return render_template("readProduct.html", opinions=product.opinionList, title=product.title, id=product.ID)
 
 if __name__ == "__main__":
     app.run()
+
+# create Author page, use jquery dataTables for opinion list (use own CSS)
+# dies irae dies illa

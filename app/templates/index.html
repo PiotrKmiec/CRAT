@@ -13,7 +13,7 @@
 
 <body onload="indexPage()">
     {% if errorID %}
-      {{ errorID }}
+      The product ID has to be between 8 and 9 characters and can only consist of digits
     {% endif %}
 
   <div id="main">
@@ -26,13 +26,14 @@
         <input type="text" id="searchBar" placeholder="Write product ID here"/>
 
         <form action="/showOpinions">
-        {% for product in products %}
-        <input class="productButton" type="submit" value="{{product}}" name="product"/>
+        {% for x in range(0, amount) %}
+        <!-- <input class="productButton" type="submit" value="{{products[x]}}" name="product"/> -->
+        <button class="productButton" type="submit" value="{{products[x]}}" name="product">{{products[x]}} , {{names[x]}}</button>
         {% endfor %}
         </form>
 
         <form id="extractForm" action="/extract" style="display:none">
-        <p style="color:#662E00">This product has not beed extracted yet.</p>
+        <p style="color:#662E00">This product has not been extracted yet.</p>
         <a id="extractButton"></a>
         </form>
 
