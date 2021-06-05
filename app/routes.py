@@ -3,33 +3,25 @@ from os import listdir
 from os.path import isfile, join
 from modules.product import Product
 import json
+from tinydb import TinyDB, Query
 
 app = Flask(__name__, template_folder='templates')
-
-def getIDs():
-    IDs = [f for f in listdir("data") if isfile(join("data", f))]
-
-    for x in range(0, len(IDs)):
-        IDs[x] = IDs[x][:-5]
-    return IDs
+db = TinyDB('data/tinyDB/products.json')
 
 
-def getProducts():
-    productIDs = getIDs()
-    products = []
-    productNames = []
+def getProductNames():
+    IDs = []
+    names = []
 
-    for x in productIDs:
-        products.append(Product(x, True))
-    for x in products:
-        productNames.append(x.title)
-
-    return [productIDs, productNames, products]
+    for x in db:
+        IDs.append(x["ID"])
+        names.append(x["Name"])
+    
+    return [IDs, names]
 
 @app.route("/")
 def home():
-    products = getProducts()
-    print(products[1])
+    products = getProductNames()
     return render_template("index.html", products=products[0], names=products[1], amount=len(products[0]), errorID=request.args.get("err"))
 
 @app.route("/extract/<var>")
@@ -42,19 +34,17 @@ def extract(var):
         return redirect("/?err=1")
 
     temp = Product(var)
-    temp.toJSON()
+    temp.toTinyDB()
 
     return redirect("/showOpinions?product="+var)
 
 @app.route("/showOpinions")
 def show():
 
-    product = Product(request.args.get('product'), True)
-
-    return render_template("readProduct.html", opinions=product.opinionList, title=product.title, id=product.ID)
+    item = db.search(Query().ID == request.args.get('product'))[0]
+    return render_template("readProduct.html", opinions=item['Opinions'], title=item['Name'], id=item['ID'])
 
 if __name__ == "__main__":
     app.run()
 
 # create Author page, use jquery dataTables for opinion list (use own CSS)
-# dies irae dies illa
