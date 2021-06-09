@@ -9,13 +9,26 @@ body{
     padding:0;
     margin:0;
 }
+::-webkit-scrollbar {
+    width:10px;
+    transition:all .3s ease-in-out;
+}
+::-webkit-scrollbar-track {
+    background:#B35A12; 
+}
+::-webkit-scrollbar-thumb {
+    background:#994500;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:#753500; 
+}
 #main{
-    width:1200px;
+    width:1600px;
     margin:0 auto;
     background-color: #662E00;
 }
 #header{
-    width: 1200px;
+    width: 1600px;
     background-color: #FF7300;
     border-bottom:3px solid #B35A12;
     color:#662E00;
@@ -23,7 +36,8 @@ body{
     text-align: center;
 }
 #content{
-    width: 1200px;
+    width: 1600px;
+    padding-bottom:15px;
 }
 #scroll{
     width:720px;
@@ -32,8 +46,8 @@ body{
     height:600px;
     margin:0 auto;
 }
-#noScrollBarWrap{
-    width:700px;
+#noScrollWrap{
+    width:720px;
     overflow:hidden;
     height:580px;
     margin:0 auto;
@@ -45,15 +59,17 @@ body{
     border:none;
     padding:10px;
     font-size: larger;
-    width:710px;
+    width:690px;
+    margin: 10px auto;
     margin-top: 15px;
     margin-left:-10px;
-    height:50px;
+    min-height:50px;
     border-left:3px solid #FF7300;
+    border-radius:10px;
 }
 .productButton:hover{
-    background-color: #B35A12;
-    border-left:5px solid #FF7300;
+    background-color:#B35A12;
+    border-left:3px solid #FF7300;
 }
 p{
     margin:30px;
@@ -63,13 +79,24 @@ p{
     color:#FF7300;
     background-color: #B35A12;
     border:none;
-    padding:20px;
+    padding:10px;
     font-size: larger;
-    width:710px;
-    margin-top: 15px;
-    margin-left:-10px;
+    width:670px;
+    margin:10px auto;
+    margin-top: 0;
     height:30px;
+    border-radius:10px;
+    transition:all .3s ease-in-out;
+    border:3px solid #B35A12;
 }
+#searchBar:hover{
+    background-color:#c96310;
+}
+#searchBar:focus{
+    outline-width: 0;
+    border:3px solid #FF7300;
+}
+
 #searchBar::placeholder{
     color:#662E00;
 }
@@ -133,4 +160,118 @@ p{
 }
 #prodTitle:hover{
     color:#B35A12;
+}
+
+/* Data table */
+#opinionTable_wrapper{
+    color:#FF7300;
+}
+#opinionTable{
+    border:0;
+}
+tbody{
+    border:0;
+}
+thead{
+    margin:0;
+    border:0;
+    padding:0;
+    border-bottom:2px solid #c96310;
+}
+tr{
+    padding:0;
+    background-color:#753500;
+    transition:all .3s ease-in-out;
+    border:0;
+    margin:0;
+}
+tr:hover{
+    background-color:#944400;
+}
+td{
+    box-sizing:border-box;
+    margin:0;
+    border:0;
+    padding:0;
+}
+th{
+    background-color:#994500;
+    border: 0;
+    padding: 5px;
+    text-align: center;
+}
+.even{
+    background-color: #873d00;
+}
+#opinionTable{
+    width:1550px;
+    margin:0 auto;
+    padding:10px;
+}
+#opinionTable_length{
+    width:1550px;
+    display: flex;
+    justify-content: flex-end;
+    margin:10px;
+    margin-bottom:30px;
+}
+#opinionTable_filter{
+    width:1550px;
+    margin:10px;
+    margin-bottom:0px;
+    display: flex;
+    justify-content: flex-end;
+}
+label>input{
+    color:#FF7300;
+    background-color:#B35A12;
+    border:none;
+    padding:10px;
+    font-size:larger;
+    width:200px;
+    margin:10px auto;
+    margin-top:0;
+    height:30px;
+    border-radius:10px;
+    transition:all .3s ease-in-out;
+    border:3px solid #B35A12;
+}
+label>input:hover{
+    background-color:#c96310;
+}
+label>input:focus{
+    outline-width: 0;
+    border:3px solid #FF7300;
+}
+label>input::placeholder{
+    color:#662E00;
+}
+.paginate_button{
+    background-color: #994500;
+    transition:all .3s ease-in-out;
+    padding:5px;
+    margin:5px;
+}
+.paginate_button:hover{
+    background-color: #c96310;
+}
+.paginate_button:active{
+    background-color: #662E00;
+}
+#opinionTable_paginate{
+    margin:10px;
+}
+select {
+    color:#FF7300;
+    background-color:#B35A12;
+    border:none;
+    border-radius:5px;
+    padding:5px;
+    transition:all .3s ease-in-out;
+}
+select:hover{
+    background-color:#c96310;
+}
+select:focus{
+    outline-width: 0;
 }

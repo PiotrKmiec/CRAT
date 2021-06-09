@@ -32,13 +32,15 @@ class Product:
                 self.opinionList.append(Opinion(review))
     
     def toTinyDB(self):
-        print(self.opinionList)
 
         temp = []
         for x in range(0, len(self.opinionList)):
             temp.append(self.opinionList[x].__dict__())
 
-        db = TinyDB('data/tinyDB/products.json')
-        db.insert({'ID': self.ID, 'Name': self.title, 'Opinions': temp})
+        db = TinyDB('data/products.json')
+        if len(db.search(Query().ID == self.ID)) > 0:
+            db.update({'Name': self.title, 'Opinions': temp}, Query().ID == self.ID)
+        else:
+            db.insert({'ID': self.ID, 'Name': self.title, 'Opinions': temp})
 
             

@@ -6,8 +6,7 @@ function indexPage(){
     searchBar.addEventListener('keyup', function(){
         empty = true;
         for(let x = 0; x < products.length; x++){
-            console.log(products[x]);
-            if(products[x].value.startsWith(searchBar.value)){
+            if(products[x].value.startsWith(searchBar.value) || products[x].textContent.split(' , ')[1].toLowerCase().startsWith(" "+searchBar.value.toLowerCase())){
                 products[x].style.display = "inline-block";
                 empty = false;
             }else{
@@ -22,4 +21,7 @@ function indexPage(){
             document.getElementById("extractForm").style.display = "none";
         }
     });
+}
+function getOpinionContent(id){
+    alert(id);
 }

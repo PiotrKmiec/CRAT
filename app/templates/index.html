@@ -21,13 +21,11 @@
       <h1 onclick="location.href='/';" style="cursor:pointer"><span style="color:orangered; font-family:arial">c</span><span style="font-family: monospace;">RAT</span></h1>
     </div>
       <p>Extracted products:</p>
-      <div id="noScrollBarWrap"><div id="scroll">
-        
-        <input type="text" id="searchBar" placeholder="Write product ID here"/>
+      <input type="text" id="searchBar" placeholder="Write product ID here"/>
+      <div id="noScrollWrap"><div id="scroll">
 
         <form action="/showOpinions">
         {% for x in range(0, amount) %}
-        <!-- <input class="productButton" type="submit" value="{{products[x]}}" name="product"/> -->
         <button class="productButton" type="submit" value="{{products[x]}}" name="product">{{products[x]}} , {{names[x]}}</button>
         {% endfor %}
         </form>
@@ -40,5 +38,7 @@
       </div></div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

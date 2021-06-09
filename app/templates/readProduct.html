@@ -19,18 +19,19 @@
     <div id="content">
       <h1 id="prodTitle">{{ title }}</h1>
       <a id="rextractButton" href="extract/{{ id }}">Re-extract product</a>
-      <p>Extracted opinions:</p>
-      <div id="noScrollBarWrap"><div id="scroll">
-
-        {% for opinion in opinions %}
-          <div id="opinion">
-            <h3 id="opAuthor">{{ opinion['author'] }}</h3>
-            <p id="opContent">{{ opinion['content'] }}</p>
+        {% block content %}
+          <div>
+            {{table | safe}}
           </div>
-        {% endfor %}
-
-      </div></div>
+        {% endblock %}
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          $('#opinionTable').DataTable();
+      });
+  </script>
 </body>
 </html>

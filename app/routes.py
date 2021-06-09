@@ -4,10 +4,10 @@ from os.path import isfile, join
 from modules.product import Product
 import json
 from tinydb import TinyDB, Query
+import pandas as pd
 
 app = Flask(__name__, template_folder='templates')
-db = TinyDB('data/tinyDB/products.json')
-
+db = TinyDB('data/products.json')
 
 def getProductNames():
     IDs = []
@@ -26,7 +26,6 @@ def home():
 
 @app.route("/extract/<var>")
 def extract(var):
-    print(var)
 
     if not var.isdecimal():
         return redirect("/?err=2")
@@ -42,7 +41,41 @@ def extract(var):
 def show():
 
     item = db.search(Query().ID == request.args.get('product'))[0]
-    return render_template("readProduct.html", opinions=item['Opinions'], title=item['Name'], id=item['ID'])
+    data = {
+            'id':[],
+            'author':[],
+            'recommended':[],
+            'rating':[],
+            'content':[],
+            'positives':[],
+            'negatives':[],
+            'helpful':[],
+            'unhelpful':[],
+            'publishDate':[],
+            'purchaseDate':[]
+        }
+
+    temp = ['id','author','recommended','rating','content','positives','negatives','helpful','unhelpful','publishDate','purchaseDate']
+
+    for x in item['Opinions']:
+        for y in temp:
+            data[y].append(x[y])
+    for x in range(0, len(data['id'])):
+        data['author'][x] = data['author'][x][1:]
+
+        positives = ""
+        for y in data['positives'][x]:
+            positives += y+"  ,  "
+        data['positives'][x] = positives[:-5]
+
+        negatives = ""
+        for y in data['negatives'][x]:
+            negatives += y+"  ,  "
+        data['negatives'][x] = negatives[:-5]
+
+    df = pd.DataFrame(data,columns=temp)
+
+    return render_template("readProduct.html", opinions=item['Opinions'], title=item['Name'], id=item['ID'], table=df.to_html(table_id="opinionTable"))
 
 if __name__ == "__main__":
     app.run()
