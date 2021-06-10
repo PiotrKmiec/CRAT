@@ -39,6 +39,28 @@ body{
     font-size:50px;
     text-align: center;
 }
+#description{
+    position:absolute;
+    width:300px;
+    left:20px;
+    top:200px;
+    margin:0;
+    padding:10px;
+    line-height: 1.6;
+    border-left:3px solid #c96310;
+    background-color: #873d00;
+}
+#stats{
+    position:absolute;
+    width:300px;
+    left:20px;
+    top:128px;
+    margin:0;
+    padding:5px;
+    line-height: 0.5;
+    border-left:3px solid #c96310;
+    background-color: #873d00;
+}
 #footer{
     width:1600px;
     position:absolute;
@@ -121,6 +143,13 @@ p{
 
 #searchBar::placeholder{
     color:#662E00;
+}
+#underRat{
+    width:350px;
+    position:absolute;
+    bottom:0px;
+    left:10px;
+    display:block;
 }
 #extractButton{
     color:#FF7300;

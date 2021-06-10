@@ -60,6 +60,22 @@ def show():
     for x in item['Opinions']:
         for y in temp:
             data[y].append(x[y])
+
+    uT = pd.DataFrame(data, columns=temp)
+
+    opinionsCount = 0
+    consCount = 0
+    prosCount = 0
+    meanRating = 0
+
+    for index, row in uT.iterrows():
+        opinionsCount += 1
+        meanRating += float(row['rating'].replace(',','.'))
+        prosCount += len(row['positives'])
+        consCount += len(row['negatives'])
+
+    meanRating = round(meanRating/opinionsCount, 2)
+
     for x in range(0, len(data['id'])):
         data['author'][x] = data['author'][x][1:]
 
@@ -73,9 +89,9 @@ def show():
             negatives += y+"  ,  "
         data['negatives'][x] = negatives[:-5]
 
-    df = pd.DataFrame(data,columns=temp)
+    cT = pd.DataFrame(data, columns=temp)
 
-    return render_template("readProduct.html", opinions=item['Opinions'], title=item['Name'], id=item['ID'], table=df.to_html(table_id="opinionTable"))
+    return render_template("readProduct.html", title=item['Name'], id=item['ID'], table=cT.to_html(table_id="opinionTable"), meanRating=meanRating, prosCount=prosCount, consCount=consCount, opinionsCount=opinionsCount)
 
 @app.route("/author")
 def author():

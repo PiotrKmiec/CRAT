@@ -22,6 +22,3 @@ function indexPage(){
         }
     });
 }
-function getOpinionContent(id){
-    alert(id);
-}
