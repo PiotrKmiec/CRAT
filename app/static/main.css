@@ -26,6 +26,10 @@ body{
     width:1600px;
     margin:0 auto;
     background-color: #662E00;
+    position:relative;
+    min-height:100vh;
+    padding-bottom:30px;
+    box-sizing: border-box;
 }
 #header{
     width: 1600px;
@@ -35,6 +39,22 @@ body{
     font-size:50px;
     text-align: center;
 }
+#footer{
+    width:1600px;
+    position:absolute;
+    bottom:0px;
+    background-color: #873d00;
+    font-size: smaller;
+    font-family: monospace;
+    padding:3px;
+    box-sizing: border-box;
+}
+#authorArticle{
+    width:700px;
+    margin:10px auto;
+    line-height: 1.6;
+
+}
 #content{
     width: 1600px;
     padding-bottom:15px;
@@ -42,15 +62,17 @@ body{
 #scroll{
     width:720px;
     background-color: #FF7300;
-    overflow:scroll;
-    height:600px;
+    overflow-y:scroll;
+    height:640px;
     margin:0 auto;
 }
 #noScrollWrap{
     width:720px;
     overflow:hidden;
-    height:580px;
+    height:640px;
     margin:0 auto;
+    border-radius: 10px;
+    margin-bottom:20px;
 }
 .productButton{
     color:#FF7300;
@@ -117,24 +139,29 @@ p{
     background-color: #B35A12;
     border-left:5px solid #FF7300;
 }
-#rextractButton{
+.bigButton{
     color:#662E00;
     background-color: #FF7300;
     transition:all .3s ease-in-out;
     border:none;
     padding:10px;
     font-size: larger;
-    width:710px;
+    width:200px;
     margin-top: 25px;
     margin-left:-10px;
     height:50px;
     border-left:3px solid #B35A12;
 }
-#rextractButton:hover{
+.bigButton:hover{
     background-color: #B35A12;
-    border-left:5px solid #FF7300;
+    border-left:3px solid #FF7300;
 }
-
+#authorButton{
+    position:absolute;
+    top:110px;
+    left:30px;
+    height:30px;
+}
 #opinion{
     border-left:8px solid #B35A12;
     background-color: #662E00;

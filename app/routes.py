@@ -77,7 +77,11 @@ def show():
 
     return render_template("readProduct.html", opinions=item['Opinions'], title=item['Name'], id=item['ID'], table=df.to_html(table_id="opinionTable"))
 
+@app.route("/author")
+def author():
+    return render_template("author.html")
+
 if __name__ == "__main__":
     app.run()
 
-# create Author page, use jquery dataTables for opinion list (use own CSS)
+# return a json file of product, return error if wrong post data sent

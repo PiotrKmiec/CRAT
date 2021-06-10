@@ -17,11 +17,15 @@
     {% endif %}
 
   <div id="main">
+
     <div id="header">
       <h1 onclick="location.href='/';" style="cursor:pointer"><span style="color:orangered; font-family:arial">c</span><span style="font-family: monospace;">RAT</span></h1>
     </div>
+
+    <a id="authorButton" class="bigButton" href="author">About author</a>
       <p>Extracted products:</p>
       <input type="text" id="searchBar" placeholder="Write product ID here"/>
+
       <div id="noScrollWrap"><div id="scroll">
 
         <form action="/showOpinions">
@@ -36,8 +40,8 @@
         </form>
 
       </div></div>
+    <div id="footer">Piotr Kmieć 2021</div>
     </div>
-  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>

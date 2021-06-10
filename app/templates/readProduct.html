@@ -18,13 +18,14 @@
     </div>
     <div id="content">
       <h1 id="prodTitle">{{ title }}</h1>
-      <a id="rextractButton" href="extract/{{ id }}">Re-extract product</a>
+      <a class="bigButton" id="rextractButton" href="extract/{{ id }}">Re-extract product</a>
         {% block content %}
           <div>
             {{table | safe}}
           </div>
         {% endblock %}
     </div>
+    <div id="footer">Piotr Kmieć 2021</div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
