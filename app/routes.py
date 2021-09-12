@@ -9,20 +9,23 @@ import pandas as pd
 app = Flask(__name__, template_folder='templates')
 db = TinyDB('data/products.json')
 
+
 def getProductNames():
     IDs = []
     names = []
+    stats = []
 
     for x in db:
         IDs.append(x["ID"])
         names.append(x["Name"])
+        stats.append([x["OpinionsCount"],x["MeanRating"],x["Cons"],x["Pros"]])
     
-    return [IDs, names]
+    return [IDs, names, stats]
 
 @app.route("/")
 def home():
     products = getProductNames()
-    return render_template("index.html", products=products[0], names=products[1], amount=len(products[0]), errorID=request.args.get("err"))
+    return render_template("index.html", products=products[0], names=products[1], stats=products[2], amount=len(products[0]), errorID=request.args.get("err"))
 
 @app.route("/extract/<var>")
 def extract(var):

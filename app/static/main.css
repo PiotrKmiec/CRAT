@@ -4,6 +4,7 @@ body{
     color:#FF7300;
     font-size: large;
     text-align: center;
+    overflow-x:hidden;
 }
 *{
     padding:0;
@@ -23,7 +24,8 @@ body{
     background:#753500; 
 }
 #main{
-    width:1600px;
+    width:99%;
+    max-width:1600px;
     margin:0 auto;
     background-color: #662E00;
     position:relative;
@@ -32,7 +34,7 @@ body{
     box-sizing: border-box;
 }
 #header{
-    width: 1600px;
+    width:100%;
     background-color: #FF7300;
     border-bottom:3px solid #B35A12;
     color:#662E00;
@@ -62,7 +64,7 @@ body{
     background-color: #873d00;
 }
 #footer{
-    width:1600px;
+    width:100%;
     position:absolute;
     bottom:0px;
     background-color: #873d00;
@@ -96,6 +98,51 @@ body{
     border-radius: 10px;
     margin-bottom:20px;
 }
+.reviewAmount{
+    display:inline-block;
+    border-radius:15px;
+    padding:2px;
+    width:150px;
+    color: white;
+    background-color: dodgerblue;
+    margin:5px;
+    font-size:small;
+    overflow:hidden;
+}
+.meanRating{
+    display:inline-block;
+    border-radius:15px;
+    padding:2px;
+    width:150px;
+    color: white;
+    background-color: blueviolet;
+    margin:5px;
+    font-size:small;
+    overflow:hidden;
+}
+.conCount{
+    display:inline-block;
+    border-radius:15px;
+    padding:2px;
+    width:150px;
+    color:white;
+    background-color: red;
+    margin:5px;
+    font-size:small;
+    overflow:hidden;
+}
+.proCount{
+    display:inline-block;
+    border-radius:15px;
+    padding:2px;
+    width:150px;
+    color:white;
+    background-color: darkgreen;
+    margin:5px;
+    font-size:small;
+    overflow:hidden;
+}
+
 .productButton{
     color:#FF7300;
     background-color: #662E00;
@@ -210,6 +257,7 @@ p{
     text-decoration: none;
 }
 #prodTitle{
+    max-width:800px;
     margin:15px auto;
     color:#FF7300;
     transition:.3s all ease-in-out;

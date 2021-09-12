@@ -31,7 +31,8 @@
 
         <form action="/showOpinions">
         {% for x in range(0, amount) %}
-        <button class="productButton" type="submit" value="{{products[x]}}" name="product">{{products[x]}} , {{names[x]}}</button>
+        <button class="productButton" type="submit" value="{{products[x]}}" name="product">{{products[x]}} , {{names[x]}}
+          <div class="stats"><div class="countTag reviewAmount">Reviews: {{stats[x][0]}}</div><div class="countTag meanRating">Average rating: {{stats[x][1]}}</div><div class="countTag conCount">Cons: {{stats[x][2]}}</div><div class="countTag proCount">Pros: {{stats[x][3]}}</div></div></button>
         {% endfor %}
         </form>
 

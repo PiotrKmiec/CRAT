@@ -30,6 +30,19 @@ class Product:
                 
             for review in reviews:
                 self.opinionList.append(Opinion(review))
+        
+        self.opinionsCount = len(self.opinionList)
+        self.consCount = 0
+        self.prosCount = 0
+        meanRating = 0
+
+        for opinion in self.opinionList:
+            self.consCount += len(opinion.negatives)
+            self.prosCount += len(opinion.positives)
+            meanRating += float(opinion.rating.replace(',','.'))
+        
+        self.meanRating=round(meanRating/self.opinionsCount, 2)
+
     
     def toTinyDB(self):
 
@@ -41,6 +54,6 @@ class Product:
         if len(db.search(Query().ID == self.ID)) > 0:
             db.update({'Name': self.title, 'Opinions': temp}, Query().ID == self.ID)
         else:
-            db.insert({'ID': self.ID, 'Name': self.title, 'Opinions': temp})
+            db.insert({'ID': self.ID, 'Name': self.title, 'Opinions': temp, 'OpinionsCount':self.opinionsCount, 'MeanRating':self.meanRating, "Cons":self.consCount, "Pros":self.prosCount})
 
             
