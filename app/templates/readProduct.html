@@ -28,6 +28,9 @@
     <div id="content">
       <h1 id="prodTitle">{{ title }}</h1>
       <a class="bigButton" id="rextractButton" href="extract/{{ id }}">Re-extract product</a>
+      <div id="charts">
+        <div class="chartContainer"><canvas id="reviewRatio"></canvas></div>
+      </div>
         {% block content %}
           <div>
             {{table | safe}}
@@ -41,9 +44,29 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
   <script>
       $(document).ready(function(){
           $('#opinionTable').DataTable();
+      });
+
+      new Chart(document.getElementById("reviewRatio"), {
+          type: 'pie',
+          data: {
+            labels: ["Positive", "Negative", "Neutral"],
+            datasets: [{
+              label: "No. of opinions",
+              backgroundColor: ["darkgreen","red","grey"],
+              data: {{ ratio }},
+            }]
+          },
+          options: {
+            relative: true,
+            title: {
+              display: true,
+              text: 'Ratio of positive opinions to negative opinions'
+            }
+          }
       });
   </script>
 </body>

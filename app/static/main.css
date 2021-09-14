@@ -24,8 +24,7 @@ body{
     background:#753500; 
 }
 #main{
-    width:99%;
-    max-width:1600px;
+    width:97%;
     margin:0 auto;
     background-color: #662E00;
     position:relative;
@@ -51,6 +50,15 @@ body{
     line-height: 1.6;
     border-left:3px solid #c96310;
     background-color: #873d00;
+}
+.chartContainer{
+    color:#FF7300;
+    width:400px;
+    height:400px;
+}
+#charts{
+    width:100%;
+    padding-left:300px;
 }
 #stats{
     position:absolute;
@@ -269,9 +277,20 @@ p{
 /* Data table */
 #opinionTable_wrapper{
     color:#FF7300;
+    width:90%;
+    overflow:hidden;
+    position: relative;
+    clear: both;
+    padding: 15px;
 }
 #opinionTable{
-    border:0;
+    width: 100% !important;
+    border: 0;
+    margin: 10px auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+
 }
 tbody{
     border:0;
@@ -307,20 +326,15 @@ th{
 .even{
     background-color: #873d00;
 }
-#opinionTable{
-    width:1550px;
-    margin:0 auto;
-    padding:10px;
-}
 #opinionTable_length{
-    width:1550px;
+    width:97% !important;
     display: flex;
     justify-content: flex-end;
     margin:10px;
     margin-bottom:30px;
 }
 #opinionTable_filter{
-    width:1550px;
+    width:97% !important;
     margin:10px;
     margin-bottom:0px;
     display: flex;

@@ -60,24 +60,18 @@ def show():
 
     temp = ['id','author','recommended','rating','content','positives','negatives','helpful','unhelpful','publishDate','purchaseDate']
 
+    ratio = [0,0,0]
+
     for x in item['Opinions']:
         for y in temp:
             data[y].append(x[y])
-
-    uT = pd.DataFrame(data, columns=temp)
-
-    opinionsCount = 0
-    consCount = 0
-    prosCount = 0
-    meanRating = 0
-
-    for index, row in uT.iterrows():
-        opinionsCount += 1
-        meanRating += float(row['rating'].replace(',','.'))
-        prosCount += len(row['positives'])
-        consCount += len(row['negatives'])
-
-    meanRating = round(meanRating/opinionsCount, 2)
+        if len(x['negatives']) == len(x['positives']):
+            ratio[2]+=1
+        elif len(x['negatives']) < len(x['positives']):
+            ratio[0]+=1
+        else:
+            ratio[1]+=1
+        
 
     for x in range(0, len(data['id'])):
         data['author'][x] = data['author'][x][1:]
@@ -94,7 +88,7 @@ def show():
 
     cT = pd.DataFrame(data, columns=temp)
 
-    return render_template("readProduct.html", title=item['Name'], id=item['ID'], table=cT.to_html(table_id="opinionTable"), meanRating=meanRating, prosCount=prosCount, consCount=consCount, opinionsCount=opinionsCount)
+    return render_template("readProduct.html", title=item['Name'], id=item['ID'], table=cT.to_html(table_id="opinionTable"), meanRating=item['MeanRating'], prosCount=item['Pros'], consCount=item['Cons'], opinionsCount=item['OpinionsCount'], ratio=ratio)
 
 @app.route("/author")
 def author():
