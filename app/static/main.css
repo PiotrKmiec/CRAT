@@ -55,10 +55,15 @@ body{
     color:#FF7300;
     width:400px;
     height:400px;
+    display:inline-block;
 }
 #charts{
-    width:100%;
+    width:900px;
     padding-left:300px;
+    position: absolute;
+    top:270px;
+    left:0px;
+    height:500px;
 }
 #stats{
     position:absolute;
@@ -282,6 +287,7 @@ p{
     position: relative;
     clear: both;
     padding: 15px;
+    margin-top:220px;
 }
 #opinionTable{
     width: 100% !important;

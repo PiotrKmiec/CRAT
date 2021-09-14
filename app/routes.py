@@ -62,6 +62,9 @@ def show():
 
     ratio = [0,0,0]
 
+    stars = ['0','0,5','1','1,5','2','2,5','3','3,5','4','4,5','5']
+    starAmounts = [0,0,0,0,0,0,0,0,0,0,0]
+
     for x in item['Opinions']:
         for y in temp:
             data[y].append(x[y])
@@ -71,6 +74,7 @@ def show():
             ratio[0]+=1
         else:
             ratio[1]+=1
+        starAmounts[stars.index(x['rating'])]+=1
         
 
     for x in range(0, len(data['id'])):
@@ -88,7 +92,7 @@ def show():
 
     cT = pd.DataFrame(data, columns=temp)
 
-    return render_template("readProduct.html", title=item['Name'], id=item['ID'], table=cT.to_html(table_id="opinionTable"), meanRating=item['MeanRating'], prosCount=item['Pros'], consCount=item['Cons'], opinionsCount=item['OpinionsCount'], ratio=ratio)
+    return render_template("readProduct.html", title=item['Name'], id=item['ID'], table=cT.to_html(table_id="opinionTable"), meanRating=item['MeanRating'], prosCount=item['Pros'], consCount=item['Cons'], opinionsCount=item['OpinionsCount'], ratio=ratio, stars=starAmounts)
 
 @app.route("/author")
 def author():
