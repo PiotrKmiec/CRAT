@@ -47,6 +47,8 @@
   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
   <script>
+    Chart.defaults.global.defaultFontColor = "#FF7300";
+    
       $(document).ready(function(){
           $('#opinionTable').DataTable();
       });
@@ -59,6 +61,7 @@
               label: "No. of opinions",
               backgroundColor: ["darkgreen","red","grey"],
               data: {{ ratio }},
+              borderColor: "#FF7300",
             }]
           },
           options: {
@@ -66,7 +69,8 @@
             title: {
               display: true,
               text: 'Ratio of positive opinions to negative opinions'
-            }
+            },
+            
           }
       });
 
@@ -78,6 +82,7 @@
             label: "No. of opinions by rating",
             backgroundColor: ["#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300","#FF7300",],
             data: {{stars}},
+            borderColor: "#FF7300",
           }]
         },
         options: {
